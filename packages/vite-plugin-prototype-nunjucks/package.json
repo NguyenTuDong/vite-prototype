@@ -1,0 +1,38 @@
+{
+  "name": "vite-plugin-prototype-nunjucks",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Dong Nguyen",
+  "license": "MIT",
+  "description": "",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/nunjucks": "^3.2.6",
+    "nunjucks": "^3.2.4",
+    "vite": "^6.1.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite-plugin-prototype": "link:../vite-plugin-prototype"
+    }
+  },
+  "dependencies": {
+    "vite-plugin-prototype": "link:../vite-plugin-prototype"
+  }
+}
