@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-prototype-nunjucks",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "tsup --watch",
@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "@types/nunjucks": "^3.2.6",
-    "nunjucks": "^3.2.4",
-    "vite-plugin-prototype": "link:../vite-plugin-prototype"
+    "nunjucks": "^3.2.4"
   }
 }

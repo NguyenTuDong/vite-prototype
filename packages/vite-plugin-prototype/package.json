@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-prototype",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "tsup --watch",
@@ -22,12 +22,12 @@
   "files": [
     "dist"
   ],
-  "devDependencies": {
+  "dependencies": {
     "@types/js-beautify": "^1.14.3",
     "@types/lodash": "^4.17.15",
-    "@types/node": "^22.13.1",
+    "@types/node": "^22.13.4",
     "fast-glob": "^3.3.3",
-    "js-beautify": "^1.15.1",
+    "js-beautify": "^1.15.3",
     "lodash": "^4.17.21",
     "picocolors": "^1.1.1",
     "vite": "^6.1.0"
