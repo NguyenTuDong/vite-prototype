@@ -1,5 +1,5 @@
 import FastGlob from 'fast-glob'
-import { Plugin, UserConfig } from 'vite'
+import { normalizePath, Plugin, UserConfig } from 'vite'
 import fs from 'fs'
 import js_beautify from 'js-beautify'
 import path from 'path'
@@ -20,17 +20,14 @@ export const buildPlugin = ({ pageDir, crossorigin }: BuildOptions): Plugin => {
     apply: 'build',
     config(config) {
       userConfig = config
-      const input = userConfig.build?.rollupOptions?.input
 
-      userConfig.build = userConfig.build || {}
-      userConfig.build.rollupOptions = userConfig.build.rollupOptions || {}
-      userConfig.build.rollupOptions.input = FastGlob.sync(
-        Array.isArray(input)
-          ? [...input]
-          : typeof input === 'string'
-            ? input
-            : '',
-      )
+      if (!userConfig.build?.rollupOptions?.input) {
+        userConfig.build = userConfig.build || {}
+        userConfig.build.rollupOptions = userConfig.build.rollupOptions || {}
+        userConfig.build.rollupOptions.input = FastGlob.sync(
+          normalizePath(pageDir + '/**/*'),
+        )
+      }
     },
     resolveId(source, _, options) {
       if (!options.isEntry) return null
