@@ -23,16 +23,11 @@
     "dist"
   ],
   "devDependencies": {
-    "@types/nunjucks": "^3.2.6",
-    "nunjucks": "^3.2.4",
     "vite": "^6.1.0"
   },
-  "pnpm": {
-    "overrides": {
-      "vite-plugin-prototype": "link:../vite-plugin-prototype"
-    }
-  },
   "dependencies": {
+    "@types/nunjucks": "^3.2.6",
+    "nunjucks": "^3.2.4",
     "vite-plugin-prototype": "link:../vite-plugin-prototype"
   }
 }
