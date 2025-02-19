@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@types/nunjucks": "^3.2.6",
-    "nunjucks": "^3.2.4"
+    "nunjucks": "^3.2.4",
+    "vite-plugin-prototype": "workspace:*"
   }
 }
