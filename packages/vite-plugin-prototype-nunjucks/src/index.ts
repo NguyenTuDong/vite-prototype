@@ -4,6 +4,7 @@ import { templateHook } from 'vite-plugin-prototype'
 
 export interface NunjucksPluginOptions {
   options?: nunjucks.ConfigureOptions
+  reload?: boolean | ((file: string) => boolean)
   onSetup?: (
     template: nunjucks.Environment,
     path: string,
@@ -13,13 +14,17 @@ export interface NunjucksPluginOptions {
 
 const defaultOptions: NunjucksPluginOptions = {
   options: {},
+  reload: true,
 }
 
 const plugin = (userOptions?: Partial<NunjucksPluginOptions>): Plugin[] => {
   const options = Object.assign(defaultOptions, userOptions)
   let userConfig: UserConfig
 
-  const { hook, filter, getData } = templateHook('njk')
+  const { hook, filter, getData } = templateHook({
+    extension: 'njk',
+    reload: options.reload,
+  })
 
   return [
     {

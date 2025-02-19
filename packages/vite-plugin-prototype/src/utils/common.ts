@@ -3,7 +3,7 @@ import path from 'path'
 import { IndexHtmlTransformContext, normalizePath, Plugin } from 'vite'
 import fs from 'fs'
 import lodash from 'lodash'
-import picocolors from 'picocolors'
+import colors from 'picocolors'
 
 export const DATA_ID = '___DATA_CONTEXT___'
 
@@ -38,9 +38,7 @@ export const getData = (dataDir: string = '') => {
               JSON.parse(fs.readFileSync(dataPath).toString()),
             )
           } catch (error) {
-            console.log(
-              picocolors.red(`Error in: ${path.join(dataDir, entry)}`),
-            )
+            console.log(colors.red(`Error in: ${path.join(dataDir, entry)}`))
             console.log(error)
           }
         }
@@ -55,9 +53,13 @@ export const getData = (dataDir: string = '') => {
   return context
 }
 
-export const templateHook = (
-  extension: string,
-): {
+export const templateHook = ({
+  extension,
+  reload,
+}: {
+  extension: string
+  reload?: boolean | ((file: string) => boolean)
+}): {
   hook: Partial<Plugin>
   filter: (ctx: IndexHtmlTransformContext) => boolean
   getData: (ctx: IndexHtmlTransformContext) => Promise<object>
@@ -65,6 +67,21 @@ export const templateHook = (
   const buildList: string[] = []
   return {
     hook: {
+      handleHotUpdate: (ctx) => {
+        if (!reload) return
+        if (typeof reload === 'function' && !reload(ctx.file)) return
+        if (!ctx.file.endsWith(`.${extension}`)) return
+
+        const { file, server } = ctx
+        const { root } = server.config
+
+        server.environments.client.logger.info(
+          `${colors.green('page reload')} ${colors.dim(path.relative(root, file))}`,
+          { clear: true, timestamp: true },
+        )
+        server.hot.send({ type: 'full-reload' })
+        return []
+      },
       transform(_, id) {
         const meta = this.getModuleInfo(id)?.meta
         if (meta?.type === extension) {
