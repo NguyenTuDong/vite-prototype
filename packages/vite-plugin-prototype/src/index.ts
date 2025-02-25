@@ -1,7 +1,8 @@
 import { PluginOption } from 'vite'
 import { pagePlugin } from './pages'
 import { buildPlugin } from './build'
-import { DATA_ID, getData, templateHook } from './utils/common'
+import { DATA_ID, getData, handleReload, templateHook } from './utils/common'
+import path from 'path'
 
 export interface CoreOptions {
   pageDir: string
@@ -26,6 +27,16 @@ const prototype = (userOptions: Partial<CoreOptions> = {}): PluginOption => {
   return [
     {
       name: `vite-plugin-prototype`,
+      handleHotUpdate: (ctx) => {
+        if (!ctx.file.endsWith(`.json`)) return
+
+        const absoluteDataDir = path.resolve(process.cwd(), options.dataDir)
+        const relativePath = path.relative(absoluteDataDir, ctx.file)
+        if (relativePath.startsWith('..')) return
+
+        handleReload(ctx)
+        return []
+      },
       load(id) {
         if (id !== DATA_ID) return null
         const data = getData(options.dataDir)

@@ -1,6 +1,11 @@
 import FastGlob from 'fast-glob'
 import path from 'path'
-import { IndexHtmlTransformContext, normalizePath, Plugin } from 'vite'
+import {
+  HmrContext,
+  IndexHtmlTransformContext,
+  normalizePath,
+  Plugin,
+} from 'vite'
 import fs from 'fs'
 import lodash from 'lodash'
 import colors from 'picocolors'
@@ -53,6 +58,17 @@ export const getData = (dataDir: string = '') => {
   return context
 }
 
+export const handleReload = (ctx: HmrContext) => {
+  const { file, server } = ctx
+  const { root } = server.config
+
+  server.environments.client.logger.info(
+    `${colors.green('page reload')} ${colors.dim(path.relative(root, file))}`,
+    { clear: true, timestamp: true },
+  )
+  server.hot.send({ type: 'full-reload' })
+}
+
 export const templateHook = ({
   extension,
   reload,
@@ -72,14 +88,7 @@ export const templateHook = ({
         if (typeof reload === 'function' && !reload(ctx.file)) return
         if (!ctx.file.endsWith(`.${extension}`)) return
 
-        const { file, server } = ctx
-        const { root } = server.config
-
-        server.environments.client.logger.info(
-          `${colors.green('page reload')} ${colors.dim(path.relative(root, file))}`,
-          { clear: true, timestamp: true },
-        )
-        server.hot.send({ type: 'full-reload' })
+        handleReload(ctx)
         return []
       },
       transform(_, id) {

@@ -1,5 +1,11 @@
 # vite-plugin-prototype
 
+## 0.0.4
+
+### Patch Changes
+
+- Fix Hmr not working on data directory
+
 ## 0.0.3
 
 ### Patch Changes
