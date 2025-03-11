@@ -22,6 +22,21 @@ importers:
         specifier: ^5.7.3
         version: 5.7.3
 
+  examples/nunjucks:
+    devDependencies:
+      typescript:
+        specifier: ~5.7.2
+        version: 5.7.3
+      vite:
+        specifier: ^6.1.0
+        version: 6.1.0(@types/node@22.13.4)
+      vite-plugin-prototype:
+        specifier: ^0.0.4
+        version: 0.0.4
+      vite-plugin-prototype-nunjucks:
+        specifier: ^0.0.4
+        version: 0.0.4
+
   packages/vite-plugin-prototype:
     dependencies:
       '@types/js-beautify':
@@ -1090,6 +1105,12 @@ packages:
     resolution: {integrity: sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==}
     engines: {node: '>= 4.0.0'}
 
+  vite-plugin-prototype-nunjucks@0.0.4:
+    resolution: {integrity: sha512-TQhrOhS7+avkyItqlPYLx/uT5YKqDniqkglbGH+C/oUKKH1emiHoh76QJJbA2BMMXn/WNHJIHUXgur7Nucb2bA==}
+
+  vite-plugin-prototype@0.0.4:
+    resolution: {integrity: sha512-PgArgTh8wPSV7Exn08JprJDdLZ78HMdK/g/g3NW1ScmC2yinnp8DEeLwAM42SEGC0vSFvjXRYmRn/SGBKflFhA==}
+
   vite@6.1.0:
     resolution: {integrity: sha512-RjjMipCKVoR4hVfPY6GQTgveinjNuyLw+qruksLDvA5ktI1150VmcMBKmQaEWJhg/j6Uaf6dNCNA0AfdzUb/hQ==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
@@ -2091,6 +2112,46 @@ snapshots:
   undici-types@6.20.0: {}
 
   universalify@0.1.2: {}
+
+  vite-plugin-prototype-nunjucks@0.0.4:
+    dependencies:
+      '@types/nunjucks': 3.2.6
+      nunjucks: 3.2.4
+      vite-plugin-prototype: 0.0.4
+    transitivePeerDependencies:
+      - chokidar
+      - jiti
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
+      - tsx
+      - yaml
+
+  vite-plugin-prototype@0.0.4:
+    dependencies:
+      '@types/js-beautify': 1.14.3
+      '@types/lodash': 4.17.15
+      '@types/node': 22.13.4
+      fast-glob: 3.3.3
+      js-beautify: 1.15.3
+      lodash: 4.17.21
+      picocolors: 1.1.1
+      vite: 6.1.0(@types/node@22.13.4)
+    transitivePeerDependencies:
+      - jiti
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
+      - tsx
+      - yaml
 
   vite@6.1.0(@types/node@22.13.4):
     dependencies:
