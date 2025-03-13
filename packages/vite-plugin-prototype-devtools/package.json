@@ -1,14 +1,14 @@
 {
-  "name": "vite-plugin-prototype",
+  "name": "vite-plugin-prototype-devtools",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.0",
   "author": "Dong Nguyen",
   "license": "MIT",
-  "description": "Small and fast static site generator for Vite",
+  "description": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NguyenTuDong/vite-prototype.git",
-    "directory": "packages/vite-plugin-prototype"
+    "directory": "packages/vite-plugin-prototype-devtools"
   },
   "bugs": {
     "url": "https://github.com/NguyenTuDong/vite-prototype/issues"
@@ -28,16 +28,18 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "./src/overlay.js"
   ],
-  "dependencies": {
-    "@types/js-beautify": "^1.14.3",
-    "@types/lodash": "^4.17.15",
-    "@types/node": "^22.13.4",
-    "fast-glob": "^3.3.3",
-    "js-beautify": "^1.15.3",
-    "lodash": "^4.17.21",
-    "picocolors": "catalog:",
+  "devDependencies": {
     "vite": "catalog:"
+  },
+  "dependencies": {
+    "@prototype/devtools-core": "workspace:*",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "sirv": "^3.0.1",
+    "picocolors": "catalog:",
+    "vite-plugin-prototype": "workspace:*",
+    "vue": "catalog:"
   }
 }

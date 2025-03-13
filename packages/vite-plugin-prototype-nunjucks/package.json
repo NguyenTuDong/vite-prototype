@@ -15,7 +15,7 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "tsup --watch",
+    "stub": "tsup --watch",
     "build": "tsup",
     "prepublishOnly": "npm run build"
   },
@@ -31,7 +31,7 @@
     "dist"
   ],
   "devDependencies": {
-    "vite": "^6.1.0"
+    "vite": "catalog:"
   },
   "dependencies": {
     "@types/nunjucks": "^3.2.6",

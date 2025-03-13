@@ -1,2 +1,7 @@
 .turbo
 node_modules
+
+dist
+
+packages/vite-plugin-prototype-devtools/overlay/**/*
+packages/vite-plugin-prototype-devtools/client/**/*

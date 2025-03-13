@@ -8,8 +8,8 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build": "turbo run build --filter=vite-plugin-*",
-    "dev": "turbo run dev --filter=vite-plugin-* --parallel"
+    "build": "turbo run build",
+    "dev": "turbo run stub --concurrency 20"
   },
   "author": "Dong Nguyen",
   "license": "MIT",

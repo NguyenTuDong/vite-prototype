@@ -1,0 +1,29 @@
+{
+  "name": "@prototype/devtools-core",
+  "type": "module",
+  "version": "0.0.0",
+  "author": "Dong Nguyen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NguyenTuDong/vite-prototype.git",
+    "directory": "packages/devtools-core"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "build": "tsup --clean",
+    "stub": "tsup --watch --onSuccess 'tsup --dts-only'"
+  }
+}
+

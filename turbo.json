@@ -7,8 +7,9 @@
     "lint": {
       "outputs": []
     },
-    "dev": {
-      "cache": false
+    "stub": {
+      "cache": false,
+      "persistent": true
     },
     "test": {
       "outputs": []

@@ -1,0 +1,25 @@
+{
+  "name": "@prototype/devtools-overlay",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vue-tsc -b && vite build",
+    "stub": "vue-tsc -b && vite build --watch"
+  },
+  "dependencies": {
+    "@prototype/devtools-core": "workspace:*",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vue/tsconfig": "catalog:",
+    "@vueuse/core": "catalog:",
+    "fs-extra": "catalog:",
+    "sass-embedded": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}
