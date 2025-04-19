@@ -1,6 +1,13 @@
+/// <reference types="vite/client" />
 //@ts-ignore
 import prototypeDevToolsOptions from 'virtual:prototype-devtools-options'
-import { setDevToolsClientUrl } from '@prototype/devtools-core'
+import {
+  createRpcServer,
+  createViteClientRpc,
+  functions,
+  setDevToolsClientUrl,
+  setViteClientContext,
+} from '@prototype/devtools-core'
 
 function normalizeUrl(url: string) {
   return new URL(
@@ -31,3 +38,16 @@ head.appendChild(link)
 
 // append to body
 body.appendChild(script)
+
+if (import.meta.hot) {
+  setViteClientContext(import.meta.hot)
+}
+createViteClientRpc()
+
+createRpcServer(functions, {
+  preset: 'iframe',
+})
+
+createRpcServer(functions, {
+  preset: 'broadcast',
+})

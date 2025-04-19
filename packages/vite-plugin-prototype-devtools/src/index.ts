@@ -6,6 +6,11 @@ import vue from '@vitejs/plugin-vue'
 import sirv from 'sirv'
 import { DIR_CLIENT } from './dir'
 import colors from 'picocolors'
+import {
+  createViteServerRpc,
+  setViteServerContext,
+} from '@prototype/devtools-core'
+import { getRpcFunctions } from './rpc'
 
 function getDevtoolsPath() {
   return normalizePath(
@@ -58,6 +63,15 @@ const plugin = (): Plugin[] => {
         },
       }),
     )
+
+    // vite client <-> server messaging
+    setViteServerContext(server)
+
+    const rpcFunctions = getRpcFunctions({
+      server,
+      config,
+    })
+    createViteServerRpc(rpcFunctions)
 
     const { cyan, bold, green, yellow } = colors
 

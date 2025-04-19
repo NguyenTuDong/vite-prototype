@@ -1,30 +1,37 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { viteRpc, onViteRpcConnected, rpc } from "@prototype/devtools-core";
+// import AppConnecting from "./components/AppConnecting.vue";
+import SideNav from "./components/common/SideNav.vue";
+import { useEventListener } from "@vueuse/core";
+import { useDevToolsColorMode } from "./composables/theme";
+
+useDevToolsColorMode();
+
+onViteRpcConnected(async () => {
+  console.log(await viteRpc.value.getLinter());
+});
+
+useEventListener("keydown", async (e) => {
+  if (e.code === "KeyD" && e.altKey && e.shiftKey) {
+    rpc.value.emit("toggle-panel");
+  }
+});
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <main class="fixed h-screen w-screen glass-effect text-base p-2">
+    <div class="bg-card rounded-22px h-full">
+      <!-- <AppConnecting /> -->
+      <div
+        class="h-full of-auto transition-base"
+        :class="'grid grid-cols-[250px_1fr]'"
+        h-full
+        of-hidden
+        font-sans
+      >
+        <SideNav />
+        <div>Home</div>
+      </div>
+    </div>
+  </main>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>

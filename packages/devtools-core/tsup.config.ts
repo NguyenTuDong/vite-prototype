@@ -1,10 +1,9 @@
-import { defineConfig } from 'tsup'
+import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entryPoints: [
-    'src/index.ts',
-  ],
-  format: ['esm', 'cjs'],
+  entryPoints: ["src/index.ts"],
+  clean: true,
+  format: ["esm", "cjs"],
   dts: true,
   shims: true,
-})
+});

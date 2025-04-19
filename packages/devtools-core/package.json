@@ -24,6 +24,12 @@
     "preinstall": "npx only-allow pnpm",
     "build": "tsup --clean",
     "stub": "tsup --watch --onSuccess 'tsup --dts-only'"
+  },
+  "dependencies": {
+    "birpc": "^2.2.0",
+    "hookable": "^5.5.3",
+    "superjson": "^2.2.2",
+    "vite": "catalog:",
+    "vite-hot-client": "^2.0.4"
   }
 }
-

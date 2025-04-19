@@ -37,8 +37,15 @@
   "dependencies": {
     "@prototype/devtools-core": "workspace:*",
     "@vitejs/plugin-vue": "^5.2.1",
-    "sirv": "^3.0.1",
+    "fast-glob": "^3.3.3",
+    "image-meta": "^0.2.1",
+    "pathe": "^2.0.3",
+    "perfect-debounce": "^1.0.0",
     "picocolors": "catalog:",
+    "postcss": "^8.5.3",
+    "postcss-scss": "^4.0.9",
+    "sirv": "^3.0.1",
+    "stylelint": "^16.16.0",
     "vite-plugin-prototype": "workspace:*",
     "vue": "catalog:"
   }

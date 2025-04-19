@@ -1,13 +1,20 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
 import {
+  useDevToolsColorMode,
   useFrameState,
   useIframe,
   usePanelVisible,
   usePosition,
 } from "./composables";
 import { checkIsSafari } from "./utils";
-import { getDevToolsClientUrl } from "@prototype/devtools-core";
+import {
+  getDevToolsClientUrl,
+  onViteRpcConnected,
+  rpcServer,
+  setIframeServerContext,
+  viteRpc,
+} from "@prototype/devtools-core";
 import FrameBox from "./FrameBox.vue";
 
 type ViewMode = "xs" | "default" | "fullscreen";
@@ -20,10 +27,24 @@ const panelState = ref<{
 });
 const overlayVisible = ref(true);
 
+const { colorMode: mode } = useDevToolsColorMode({
+  selector: anchorEle,
+});
+
+const linterResult = reactive<{
+  error: number;
+  warning: number;
+}>({
+  error: 0,
+  warning: 0,
+});
+
 const cssVars = computed(() => {
-  const dark = true;
+  const dark = mode.value === "dark";
   return {
-    "--prototype-devtools-widget-bg": dark ? "#121212" : "#ffffff",
+    "--prototype-devtools-widget-bg": dark
+      ? "rgba(18, 18, 18, 0.8)"
+      : "rgba(255, 255, 255, 0.7)",
     "--prototype-devtools-widget-fg": dark ? "#F5F5F5" : "#111",
     "--prototype-devtools-widget-border": dark ? "#3336" : "#efefef",
     "--prototype-devtools-widget-shadow": dark
@@ -47,12 +68,9 @@ const {
 const { togglePanelVisible, closePanel, panelVisible } = usePanelVisible();
 const { state } = useFrameState();
 
-const {
-  // iframe,
-  getIframe,
-} = useIframe(clientUrl, async () => {
+const { getIframe } = useIframe(clientUrl, async () => {
   const iframe = getIframe();
-  // setIframeServerContext(iframe)
+  setIframeServerContext(iframe);
   await waitForClientInjection(iframe);
 });
 
@@ -70,6 +88,44 @@ function waitForClientInjection(
     });
   });
 }
+
+onMounted(() => {
+  rpcServer.functions.on("toggle-panel", togglePanelVisible);
+});
+
+onUnmounted(() => {
+  rpcServer.functions.off("toggle-panel", togglePanelVisible);
+});
+
+function getLinter() {
+  viteRpc.value.getLinter().then((result) => {
+    let totalError = 0;
+    let totalWarning = 0;
+
+    result.forEach((linter) => {
+      totalError += linter.errorCount;
+      totalWarning += linter.warningCount;
+    });
+
+    linterResult.error = totalError;
+    linterResult.warning = totalWarning;
+
+    console.log(result);
+  });
+}
+
+function onLinterUpdated() {
+  getLinter();
+}
+
+onViteRpcConnected(async () => {
+  getLinter();
+  viteRpc.functions.on("linterUpdated", onLinterUpdated);
+});
+
+onUnmounted(() => {
+  viteRpc.functions.off("linterUpdated", onLinterUpdated);
+});
 </script>
 
 <template>
@@ -97,13 +153,13 @@ function waitForClientInjection(
       class="devtools__panel"
       :style="panelStyle"
       @pointerdown="onPointerDown"
+      @click="() => togglePanelVisible()"
     >
       <div
         class="devtools__anchor-btn panel-entry-btn"
         title="Toggle Prototype DevTools"
         aria-label="Toggle devtools panel"
         :style="panelVisible ? '' : 'filter:saturate(0)'"
-        @click="togglePanelVisible"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -117,6 +173,43 @@ function waitForClientInjection(
           />
         </svg>
       </div>
+      <template v-if="linterResult.error || linterResult.warning">
+        <div class="devtools__panel-content devtools__panel-divider" />
+        <div class="devtools__panel-content devtools__panel-linter">
+          <span v-if="linterResult.error" class="error">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M12 17q.425 0 .713-.288T13 16t-.288-.712T12 15t-.712.288T11 16t.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7t-.712.288T11 8v4q0 .425.288.713T12 13m0 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"
+              />
+            </svg>
+            <span class="number">
+              {{ linterResult.error }}
+            </span>
+          </span>
+          <span v-if="linterResult.warning" class="warning">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M2.725 21q-.275 0-.5-.137t-.35-.363t-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3t.488.125t.387.375l9.25 16q.15.25.138.513t-.138.487t-.35.363t-.5.137zM12 18q.425 0 .713-.288T13 17t-.288-.712T12 16t-.712.288T11 17t.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10t-.712.288T11 11v3q0 .425.288.713T12 15"
+              />
+            </svg>
+            <span class="number">
+              {{ linterResult.warning }}
+            </span>
+          </span>
+        </div>
+      </template>
     </div>
 
     <!-- iframe -->
@@ -193,19 +286,29 @@ function waitForClientInjection(
       .devtools__panel {
         transform: translate(-50%, -50%) rotate(90deg);
         box-shadow: 2px -2px 8px var(--prototype-devtools-widget-shadow);
+
+        &-linter {
+          svg {
+            transform: rotate(-90deg);
+          }
+
+          .number {
+            writing-mode: sideways-lr;
+          }
+        }
       }
     }
 
-    &--hide {
-      .devtools__panel {
-        max-width: 32px;
-        padding: 2px 0;
-      }
-
-      .devtools__panel-content {
-        opacity: 0;
-      }
-    }
+    /* &--hide { */
+    /*   .devtools__panel { */
+    /*     max-width: 32px; */
+    /*     padding: 2px 0; */
+    /*   } */
+    /**/
+    /*   .devtools__panel-content { */
+    /*     opacity: 0; */
+    /*   } */
+    /* } */
 
     &--glowing {
       position: absolute;
@@ -219,7 +322,7 @@ function waitForClientInjection(
       pointer-events: none;
       z-index: -1;
       border-radius: 9999px;
-      background-image: linear-gradient(45deg, #00dc82, #00dc82, #00dc82);
+      background-image: linear-gradient(45deg, #f99c23, #f99c23, #f99c23);
       filter: blur(60px);
     }
 
@@ -251,9 +354,10 @@ function waitForClientInjection(
     color: var(--prototype-devtools-widget-fg);
     box-shadow: 2px 2px 8px var(--prototype-devtools-widget-shadow);
     user-select: none;
-    max-width: 150px;
+    /* max-width: 150px; */
     transition:
-      max-width 0.4s ease,
+      /* max-width 0.4s ease, */
+      width 0.4s ease,
       padding 0.5s ease,
       transform 0.3s ease,
       all 0.4s ease;
@@ -266,6 +370,41 @@ function waitForClientInjection(
       border-left: 1px solid #8883;
       width: 1px;
       height: 10px;
+    }
+
+    &-linter {
+      display: flex;
+      gap: 8px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease-in-out;
+      padding: 0 8px;
+      cursor: pointer;
+      font-size: 0.8em;
+      line-height: 1em;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+      }
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .error {
+        color: #ff3c10;
+      }
+
+      .warning {
+        color: #ffdb12;
+      }
     }
   }
 }

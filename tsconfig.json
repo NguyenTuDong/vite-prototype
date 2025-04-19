@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "jsx": "preserve",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@prototype/devtools-core": [
+        "./packages/devtools-core/src/index.ts"
+      ]
+    },
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    // We use tsup/vite instead of tsc to build the package, so we don't need to care about this option.
+    // Add outDir option to avoid tsconfig error in monorepo.
+    "outDir": "dist",
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "**/vite-plugin-prototype-devtools/overlay/**",
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/**/*.js"
+  ]
+}

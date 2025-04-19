@@ -4,13 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "stub": "vue-tsc -b && vite build --watch"
   },
   "dependencies": {
+    "@prototype/devtools-core": "workspace:*",
+    "@unocss/reset": "66.1.0-beta.6",
+    "@vueuse/core": "catalog:",
+    "colord": "^2.9.3",
+    "unocss": "66.1.0-beta.6",
     "vue": "catalog:"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.2.3",
     "@types/fs-extra": "catalog:",
     "@vitejs/plugin-vue": "catalog:",
     "@vue/tsconfig": "catalog:",

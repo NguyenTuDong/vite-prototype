@@ -181,7 +181,7 @@ const viewModeClass = computed(() => {
     outline: none;
     background: var(--devtools-widget-bg);
     border: 1px solid rgba(125, 125, 125, 0.2);
-    border-radius: 10px;
+    border-radius: 30px;
   }
 
   &.view-mode-xs {
