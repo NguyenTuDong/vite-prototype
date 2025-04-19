@@ -9,9 +9,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "typescript": "~5.7.2",
-    "vite": "^6.1.0",
-    "vite-plugin-prototype": "^0.0.4",
-    "vite-plugin-prototype-nunjucks": "^0.0.4"
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-prototype": "workspace:*",
+    "vite-plugin-prototype-devtools": "workspace:*",
+    "vite-plugin-prototype-nunjucks": "workspace:*"
   }
 }
