@@ -11,6 +11,9 @@ import {
   setViteServerContext,
 } from '@prototype/devtools-core'
 import { getRpcFunctions } from './rpc'
+import { PluginOptions } from './type'
+
+export * from './type'
 
 function getDevtoolsPath() {
   return normalizePath(
@@ -39,7 +42,7 @@ function normalizeComboKeyPrint(toggleComboKey: string) {
 
 const devtoolsNextResourceSymbol = '?__prototype-devtools-next-resource'
 
-const plugin = (): Plugin[] => {
+const plugin = (options?: PluginOptions): Plugin[] => {
   const devtoolsPath = getDevtoolsPath()
 
   let config: ResolvedConfig
@@ -70,6 +73,7 @@ const plugin = (): Plugin[] => {
     const rpcFunctions = getRpcFunctions({
       server,
       config,
+      options,
     })
     createViteServerRpc(rpcFunctions)
 

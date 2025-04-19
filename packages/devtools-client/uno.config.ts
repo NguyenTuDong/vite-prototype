@@ -23,7 +23,7 @@ export default defineConfig({
     presetAttributify(),
     presetWebFonts({
       fonts: {
-        sans: "DM Sans",
+        sans: "DM Sans:400,500",
         mono: "DM Mono",
         stylish: "Caveat",
       },

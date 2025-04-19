@@ -11,10 +11,6 @@ const props = defineProps<{
   client: {
     close: () => void
     getIFrame: () => HTMLIFrameElement
-    // inspector: {
-    //   isEnabled: Ref<boolean>
-    //   disable: () => void
-    // } | undefined
   }
   viewMode: 'xs' | 'default' | 'fullscreen'
 
@@ -23,20 +19,6 @@ const props = defineProps<{
 const { state, updateState } = useFrameState()
 const container = ref<HTMLElement>()
 const isResizing = ref<false | { top?: boolean, left?: boolean, right?: boolean, bottom?: boolean }>(false)
-
-// onRpcSeverReady(() => {
-//   // @ts-expect-error skip
-//   rpcServer.functions.on('update-client-state', (v) => {
-//     if (v) {
-//       updateState({
-//         minimizePanelInactive: v.minimizePanelInteractive,
-//         closeOnOutsideClick: v.closeOnOutsideClick,
-//         preferShowFloatingPanel: v.showFloatingPanel,
-//         reduceMotion: v.reduceMotion,
-//       })
-//     }
-//   })
-// })
 
 watchEffect(() => {
   if (!container.value)
@@ -181,7 +163,7 @@ const viewModeClass = computed(() => {
     outline: none;
     background: var(--devtools-widget-bg);
     border: 1px solid rgba(125, 125, 125, 0.2);
-    border-radius: 30px;
+    border-radius: 10px;
   }
 
   &.view-mode-xs {

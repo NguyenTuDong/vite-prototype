@@ -48,3 +48,21 @@ export interface AssetEntry {
   override?: boolean;
 }
 
+export interface LinterCommonResult {
+  file: string;
+  relativeFilePath: string;
+  line: number;
+  column: number;
+  message: string;
+  rule: string;
+  severity: string;
+}
+
+export type LinterResult = Record<string, LinterCommonResult[]>;
+
+export interface LinterReport {
+  linter: string;
+  errorCount: number;
+  warningCount: number;
+  results: LinterResult;
+}

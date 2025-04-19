@@ -1,12 +1,22 @@
 import stylelint from 'stylelint'
-import path from 'path'
+import { parseStylelint } from '.'
+import { LinterReport } from '@prototype/devtools-core'
 
-export async function lintStyle() {
+export type StyleLintOption = Omit<stylelint.LinterOptions, 'formatter'>
+
+export async function stylelintTool(
+  options: StyleLintOption | undefined = {},
+): Promise<LinterReport | null> {
   try {
+    const _options = Object.assign<StyleLintOption, StyleLintOption>(
+      {
+        files: ['src/**/*.{vue,css,scss,sass,less,styl,svelte}'],
+      },
+      options,
+    )
+
     const result = await stylelint.lint({
-      files: ['src/**/*.{vue,css,scss,sass,less,styl,svelte}'],
-      cache: true,
-      cacheLocation: path.join('node_modules', '.vite', 'stylelint'),
+      ..._options,
       formatter: (results) => {
         let errorCount = 0
         let warningCount = 0
@@ -21,11 +31,13 @@ export async function lintStyle() {
           linter: 'stylelint',
           errorCount,
           warningCount,
+          results: parseStylelint(results),
         })
       },
     })
-    return result
+    return JSON.parse(result.report)
   } catch (error) {
+    console.log(error)
     return null
   }
 }

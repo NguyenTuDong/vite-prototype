@@ -7,26 +7,37 @@ export const themeDef = {
     black: "#0b1015",
 
     // gray
-    "gray-900": "#1d2935",
-    "gray-800": "#2c3e50",
-    "gray-700": "#3e5770",
-    "gray-600": "#4f6f7f",
-    "gray-500": "#809fae",
-    "gray-400": "#93b0be",
-    "gray-300": "#b6c6ce",
-    "gray-200": "#c8d3d9",
-    "gray-100": "#e0e5e7",
+    "gray-900": "#191919",
+    "gray-800": "#333333",
+    "gray-700": "#4c4c4c",
+    "gray-600": "#666666",
+    "gray-500": "#808080",
+    "gray-400": "#999999",
+    "gray-300": "#b3b3b3",
+    "gray-200": "#cccccc",
+    "gray-100": "#e6e6e6",
 
     // primary
-    "primary-900": "#034124",
-    "primary-800": "#085e37",
-    "primary-700": "#13794a",
-    "primary-600": "#299f69",
-    "primary-500": "#42b983",
-    "primary-400": "#56cd96",
-    "primary-300": "#89deb7",
-    "primary-200": "#abeacd",
-    "primary-100": "#e0f8ed",
+    "primary-900": "#702200",
+    "primary-800": "#943800",
+    "primary-700": "#b54d01",
+    "primary-600": "#c85900",
+    "primary-500": "#ea6e00",
+    "primary-400": "#ff8915",
+    "primary-300": "#ffa733",
+    "primary-200": "#ffc45e",
+    "primary-100": "#ffe6b0",
+
+    // green
+    "green-900": "#034124",
+    "green-800": "#085e37",
+    "green-700": "#13794a",
+    "green-600": "#299f69",
+    "green-500": "#42b983",
+    "green-400": "#56cd96",
+    "green-300": "#89deb7",
+    "green-200": "#abeacd",
+    "green-100": "#e0f8ed",
 
     // accent
     "accent-900": "#350066",
@@ -40,7 +51,6 @@ export const themeDef = {
     "accent-100": "#e6ccff",
 
     // danger
-
     "danger-900": "#500000",
     "danger-800": "#850505",
     "danger-700": "#ac0d0d",

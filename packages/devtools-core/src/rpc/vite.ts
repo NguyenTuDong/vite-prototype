@@ -4,7 +4,7 @@ import {
   createRpcServer,
   getViteRpcClient,
 } from "../messaging";
-import type { AssetImporter, AssetInfo, ImageMeta } from "../types";
+import type { AssetImporter, AssetInfo, ImageMeta, LinterResult } from "../types";
 import { createHooks } from "hookable";
 import { setViteClientContext } from "../messaging/presets/vite";
 
@@ -41,18 +41,23 @@ export type ViteRPCFunctions = typeof viteRpcFunctions & {
       linter: string;
       errorCount: number;
       warningCount: number;
+      results: LinterResult;
     }>
   >;
 };
 
 export const viteRpc = new Proxy<{
-  value: ReturnType<typeof getViteRpcClient<ViteRPCFunctions, ViteRPCFunctions>>;
+  value: ReturnType<
+    typeof getViteRpcClient<ViteRPCFunctions, ViteRPCFunctions>
+  >;
   functions: ReturnType<
     typeof getViteRpcClient<ViteRPCFunctions, ViteRPCFunctions>
   >["$functions"];
 }>(
   {
-    value: {} as ReturnType<typeof getViteRpcClient<ViteRPCFunctions, ViteRPCFunctions>>,
+    value: {} as ReturnType<
+      typeof getViteRpcClient<ViteRPCFunctions, ViteRPCFunctions>
+    >,
     functions: {} as ReturnType<
       typeof getViteRpcClient<ViteRPCFunctions, ViteRPCFunctions>
     >["$functions"],

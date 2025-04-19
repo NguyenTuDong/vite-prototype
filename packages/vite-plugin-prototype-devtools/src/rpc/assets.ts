@@ -3,7 +3,6 @@ import fg from 'fast-glob'
 import { ImageMeta, imageMeta } from 'image-meta'
 import { join, relative, resolve } from 'pathe'
 import { debounce } from 'perfect-debounce'
-import { RpcFunctionCtx } from './types'
 import {
   AssetImporter,
   AssetInfo,
@@ -11,6 +10,7 @@ import {
   getViteRpcServer,
   ViteRPCFunctions,
 } from '@prototype/devtools-core'
+import { RpcFunctionCtx } from '../type'
 
 function guessType(path: string): AssetType {
   if (/\.(?:png|jpe?g|jxl|gif|svg|webp|avif|ico|bmp|tiff?)$/i.test(path))

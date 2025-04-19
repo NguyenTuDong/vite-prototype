@@ -1,6 +1,6 @@
+import { RpcFunctionCtx } from '../type'
 import { getAssetsFunctions } from './assets'
 import { getLinterFunctions } from './linter'
-import { RpcFunctionCtx } from './types'
 
 export function getRpcFunctions(ctx: RpcFunctionCtx) {
   return {
