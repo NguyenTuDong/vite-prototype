@@ -36,14 +36,15 @@ export default defineConfig({
     fcc: "flex justify-center items-center",
     fbc: "flex justify-between items-center",
     fsc: "flex justify-start items-center",
-    "if-sc": "inline-flex justify-start items-center",
     fec: "flex justify-end items-center",
+    "if-sc": "inline-flex justify-start items-center",
     "if-cc": "inline-flex justify-center items-center",
     "z-max": "z-2147483646",
     "z-max-override": "z-2147483647",
 
     // general
-    "bg-base": "bg-white dark:bg-#121212",
+    "bg-base": "bg-white dark:bg-#0e0e0e",
+    "bg-base-op90": "bg-white/90 dark:bg-#0e0e0e/90",
     "text-base": "text-black dark:text-#dfe0e2",
     base: "box-border font-inherit",
     transition: "transition-all duration-300 ease-in-out",
@@ -56,7 +57,7 @@ export default defineConfig({
     "bg-card": "bg-#121212/80",
 
     // glass
-    "glass-effect": "backdrop-blur-20px bg-white/80 dark:bg-#1a1a1a/50",
+    "glass-effect": "backdrop-blur-20px bg-base-op90",
 
     // code
     "code-block": "dark:bg-#121212 bg-white",

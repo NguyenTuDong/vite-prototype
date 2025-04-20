@@ -48,6 +48,13 @@ export interface AssetEntry {
   override?: boolean;
 }
 
+export interface CodeSnippet {
+  code: string;
+  lang: string;
+  name: string;
+  docs?: string;
+}
+
 export interface LinterCommonResult {
   file: string;
   relativeFilePath: string;

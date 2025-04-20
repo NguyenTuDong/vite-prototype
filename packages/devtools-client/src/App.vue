@@ -34,14 +34,14 @@ useEventListener("keydown", async (e) => {
     fixed
     h-screen
     w-screen
-    class="bg-[#ffffff]/90 dark:bg-[#0E0E0E]/90 backdrop-blur-20px text-base"
+    class="glass-effect text-base"
   >
     <!-- <AppConnecting /> -->
     <div
       class="h-full of-auto transition-base"
       :class="
         sidebarExpanded
-          ? 'grid grid-cols-[250px_1fr]'
+          ? 'grid grid-cols-[230px_1fr]'
           : 'grid grid-cols-[55px_1fr]'
       "
       h-full
@@ -49,9 +49,7 @@ useEventListener("keydown", async (e) => {
       font-sans
     >
       <SideNav />
-      <div flex="~ col" of-hidden>
         <RouterView />
       </div>
-    </div>
   </main>
 </template>

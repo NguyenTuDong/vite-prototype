@@ -26,12 +26,12 @@ const sidebarExpanded = computed(() => devtoolsClientState.value.expandSidebar);
     op75
     px2
     border="~ transparent"
-    class="hover:op-100"
+    class="hover:op-100 hover:bg-active"
     exact-active-class="bg-active border-base! op-100! group is-active"
   >
     <span
       :class="props.item.icon"
-      class="w-5 h-5 group-[.is-active]:text-primary-400 dark:group-[.is-active]:text-primary-300"
+      class="w-5 h-5 group-[.is-active]:text-primary-300 dark:group-[.is-active]:text-primary-400"
     ></span>
     <template v-if="sidebarExpanded">
       {{ props.item.name }}

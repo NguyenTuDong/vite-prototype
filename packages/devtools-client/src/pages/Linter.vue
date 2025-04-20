@@ -5,6 +5,7 @@ import {
   type LinterResult,
 } from "@prototype/devtools-core";
 import { onUnmounted, ref } from "vue";
+import MainLayout from "../components/MainLayout.vue";
 import ErrorGroup from "../components/linter/ErrorGroup.vue";
 
 type Reports = Record<string, LinterResult>;
@@ -37,16 +38,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div border="b base" class="p-4">
-    <h1 class="text-xl font-bold">Lint Reports</h1>
-  </div>
-
-  <div of-x-hidden of-y-auto>
+  <MainLayout title="Lint Reports">
     <ErrorGroup
       v-for="(errors, linter) in reports"
       :key="linter"
       :title="linter"
       :errorsByFile="errors"
     />
-  </div>
+  </MainLayout>
 </template>

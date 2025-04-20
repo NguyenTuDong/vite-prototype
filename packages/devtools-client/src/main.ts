@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import "@unocss/reset/tailwind.css";
 import "virtual:uno.css";
+import "floating-vue/dist/style.css";
 import "./assets/style.css";
 import App from "./App.vue";
 import {

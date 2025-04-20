@@ -1,3 +1,6 @@
+<script setup lang="ts">
+import MainLayout from "../components/MainLayout.vue";
+</script>
 <template>
-  <div>Router</div>
+  <MainLayout title="Router"> </MainLayout>
 </template>

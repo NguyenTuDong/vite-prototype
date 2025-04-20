@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import SideNavItem from "./SideNavItem.vue";
+import Button from "./Button.vue";
 import { devtoolsClientState } from "../../composables/state";
 import { useDevToolsColorMode } from "../../composables/theme";
 
@@ -42,32 +43,37 @@ const navItems: NavItem[] = [
 
 <template>
   <div border="r base" flex="~ col items-start" of-hidden>
-    <div sticky top-0 z-1 w-full p2 border="b base">
+    <div
+      sticky
+      top-0
+      z-1
+      flex="~ items-center justify-center gap-2"
+      w-full
+      p2
+      border="b base"
+    >
       <div
         ref="buttonDocking"
-        flex="~ items-center justify-center gap-2"
+        flex="~ items-center gap-2"
         relative
         h-10
         w-full
         select-none
         p2
         rounded
+        v-if="expandSidebar"
       >
-        <template v-if="expandSidebar">
-          <span class="w-5 h-5 i-mdi-tools"></span>
-          <span font-600> DevTools </span>
-          <div flex-auto />
-        </template>
-        <span
-          class="w-5 h-5 cursor-pointer op-75 hover:op-100"
-          :class="
-            expandSidebar
-              ? 'i-tabler-arrow-bar-left'
-              : 'i-tabler-arrow-bar-right'
-          "
-          @click="expandSidebar = !expandSidebar"
-        ></span>
+        <span class="w-5 h-5 i-mdi-tools"></span>
+        <span font-600> DevTools </span>
       </div>
+      <div v-if="expandSidebar" flex-auto />
+      <Button
+        :icon="
+          expandSidebar ? 'i-tabler-arrow-bar-left' : 'i-tabler-arrow-bar-right'
+        "
+        @click="expandSidebar = !expandSidebar"
+      >
+      </Button>
     </div>
 
     <div flex="~ auto col gap-0.5 items-center" w-full of-x-hidden of-y-auto p2>
@@ -76,25 +82,15 @@ const navItems: NavItem[] = [
     </div>
 
     <div sticky bottom-0 z-1 w-full p2>
-      <div
-        flex="~ items-center justify-center gap-2"
-        select-none
-        border
-        border-transparent
-        h-10
-        op-75
-        class="px-2 cursor-pointer hover:op-100"
+      <Button
+        class="w-full"
+        :icon="isDark ? 'i-ph-moon-duotone' : 'i-ph-sun-duotone'"
         @click="isDark = !isDark"
       >
-        <span
-          class="w-5 h-5"
-          :class="isDark ? 'i-ph-moon-duotone' : 'i-ph-sun-duotone'"
-        ></span>
         <template v-if="expandSidebar">
           {{ isDark ? "Dark" : "Light" }}
-          <div flex-auto />
         </template>
-      </div>
+      </Button>
     </div>
   </div>
 </template>
