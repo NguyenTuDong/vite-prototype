@@ -1,6 +1,6 @@
 import { createHooks } from "hookable";
 import { getRpcClient, getRpcServer } from "../messaging";
-import { target } from "../core";
+import { getDevToolsClientUrl, target } from "../core";
 
 const hooks = createHooks();
 
@@ -35,6 +35,10 @@ export const functions = {
   },
   navigate: (path: string) => {
     target.location.href = path;
+  },
+  openInNewTab: (url?: string, feature?: string) => {
+    const _url = url ?? getDevToolsClientUrl();
+    target.open(_url, "_blank", feature);
   },
 };
 

@@ -2,6 +2,7 @@
 //@ts-ignore
 import prototypeDevToolsOptions from 'virtual:prototype-devtools-options'
 import {
+    CLIENT_URL,
   createRpcServer,
   createViteClientRpc,
   DevToolsMessagingEvents,
@@ -22,7 +23,7 @@ const overlayDir = normalizeUrl(`@id/virtual:prototype-devtools-path:overlay`)
 const body = document.getElementsByTagName('body')[0]
 const head = document.getElementsByTagName('head')[0]
 
-const devtoolsClientUrl = normalizeUrl(`__devtools__/`)
+const devtoolsClientUrl = normalizeUrl(`${CLIENT_URL}/`)
 setDevToolsClientUrl(devtoolsClientUrl)
 
 // create link stylesheet

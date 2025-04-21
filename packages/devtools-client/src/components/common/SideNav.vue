@@ -76,7 +76,7 @@ const navItems: NavItem[] = [
       </Button>
     </div>
 
-    <div flex="~ auto col gap-0.5 items-center" w-full of-x-hidden of-y-auto p2>
+    <div flex="~ auto col gap-0.5 items-center" w-full of-x-hidden of-y-auto p2 class="no-scrollbar">
       <SideNavItem v-for="(item, key) in navItems" :key="key" :item="item" />
       <div flex-auto />
     </div>

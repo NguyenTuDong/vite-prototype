@@ -26,6 +26,17 @@
   background: #888888bf;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar {
+  /* Support Firefox */
+  scrollbar-width: none;
+}
+
 /* Overrides Floating Vue */
 .v-popper--theme-dropdown .v-popper__inner,
 .v-popper--theme-tooltip .v-popper__inner {

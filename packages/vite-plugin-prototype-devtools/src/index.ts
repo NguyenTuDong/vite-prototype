@@ -7,6 +7,7 @@ import sirv from 'sirv'
 import { DIR_CLIENT } from './dir'
 import colors from 'picocolors'
 import {
+    CLIENT_URL,
   createViteServerRpc,
   setViteServerContext,
 } from '@prototype/devtools-core'
@@ -53,7 +54,7 @@ const plugin = (options?: PluginOptions): Plugin[] => {
   function configureServer(server: ViteDevServer) {
     const base = server.config.base || '/'
     server.middlewares.use(
-      `${base}__devtools__`,
+      `${base}${CLIENT_URL}`,
       sirv(DIR_CLIENT, {
         single: true,
         dev: true,
@@ -89,8 +90,8 @@ const plugin = (options?: PluginOptions): Plugin[] => {
       _printUrls()
       for (const url of urls.local) {
         const devtoolsUrl = url.endsWith('/')
-          ? `${url}__devtools__/`
-          : `${url}/__devtools__/`
+          ? `${url}${CLIENT_URL}/`
+          : `${url}/${CLIENT_URL}/`
         console.log(
           `  ${green('➜')}  ${bold('Prototype DevTools')}: ${green(`Open ${colorUrl(`${devtoolsUrl}`)} as a separate window`)}`,
         )

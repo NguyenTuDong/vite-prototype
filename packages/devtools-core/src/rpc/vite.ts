@@ -13,6 +13,7 @@ import type {
 } from "../types";
 import { createHooks } from "hookable";
 import { setViteClientContext } from "../messaging/presets/vite";
+import { CLIENT_URL } from "../core";
 
 const hooks = createHooks();
 
@@ -104,7 +105,7 @@ export function onViteRpcConnected(callback: () => void) {
 
 async function getViteHotContext() {
   const viteClient = await getViteClient(
-    `${location.pathname.split("/__devtools__")[0] || ""}/`.replace(
+    `${location.pathname.split(`/${CLIENT_URL}`)[0] || ""}/`.replace(
       /\/\//g,
       "/",
     ),

@@ -5,8 +5,11 @@ import {
   onViteRpcConnected,
   viteRpc,
   isMacOS,
+  rpc,
+  isInIframe,
 } from "@prototype/devtools-core";
 import { useRouter } from "vue-router";
+import Button from "../components/common/Button.vue";
 
 const router = useRouter();
 const routeCount = ref(0);
@@ -52,6 +55,12 @@ onViteRpcConnected(() => {
     getLinterCount,
   );
 });
+
+function openInNewWindow() {
+  rpc.value.openInNewTab(undefined, "height=570,width=1200").then(() => {
+    rpc.value.emit(DevToolsMessagingEvents.TOGGLE_PANEL);
+  });
+}
 </script>
 <template>
   <div flex="~ col" of-x-hidden of-y-auto>
@@ -137,16 +146,8 @@ onViteRpcConnected(() => {
       </a>
     </div>
 
-    <div>
-      <div
-        flex="~ gap-1"
-        cursor-default
-        items-center
-        justify-center
-        p-8
-        text-sm
-        op50
-      >
+    <div flex="~ col items-center justify-center gap-6" p-8>
+      <div flex="~ gap-1" cursor-default text-sm op50>
         Press
         <template v-if="isMacOS()">
           <kbd> ⇧ Shift </kbd>
@@ -164,6 +165,14 @@ onViteRpcConnected(() => {
         </template>
         to toggle DevTools
       </div>
+
+      <Button
+        v-if="isInIframe"
+        icon="i-ph-arrow-square-out"
+        @click="openInNewWindow"
+      >
+        Open in New window
+      </Button>
     </div>
   </div>
 </template>

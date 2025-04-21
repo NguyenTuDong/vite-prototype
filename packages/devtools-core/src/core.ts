@@ -38,3 +38,4 @@ export function getDevToolsClientUrl() {
 }
 
 export const THEME_KEY = "__prototype-devtools-theme__";
+export const CLIENT_URL = "__prototype_devtools__"
