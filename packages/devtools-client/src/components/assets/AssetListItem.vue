@@ -55,7 +55,6 @@ const icon = computed(() => {
         flex-auto
         text-start
         text-sm
-        font-mono
       >
         {{ item.path }}
       </span>

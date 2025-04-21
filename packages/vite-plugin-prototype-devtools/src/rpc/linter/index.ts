@@ -1,5 +1,6 @@
 import { debounce } from 'perfect-debounce'
 import {
+  DevToolsMessagingEvents,
   getViteRpcServer,
   LinterCommonResult,
   LinterReport,
@@ -25,7 +26,9 @@ export function getLinterFunctions(ctx: RpcFunctionCtx) {
       result = result.filter((value) => {
         return Object.keys(value.results).length
       })
-      getViteRpcServer<ViteRPCFunctions>?.()?.broadcast?.emit('linterUpdated')
+      getViteRpcServer<ViteRPCFunctions>?.()?.broadcast?.emit(
+        DevToolsMessagingEvents.LINTER_INFO_UPDATED,
+      )
     })
   }
 

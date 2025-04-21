@@ -9,6 +9,7 @@ import {
 } from "./composables";
 import { checkIsSafari } from "./utils";
 import {
+  DevToolsMessagingEvents,
   getDevToolsClientUrl,
   onViteRpcConnected,
   rpcServer,
@@ -90,11 +91,17 @@ function waitForClientInjection(
 }
 
 onMounted(() => {
-  rpcServer.functions.on("toggle-panel", togglePanelVisible);
+  rpcServer.functions.on(
+    DevToolsMessagingEvents.TOGGLE_PANEL,
+    togglePanelVisible,
+  );
 });
 
 onUnmounted(() => {
-  rpcServer.functions.off("toggle-panel", togglePanelVisible);
+  rpcServer.functions.off(
+    DevToolsMessagingEvents.TOGGLE_PANEL,
+    togglePanelVisible,
+  );
 });
 
 function getLinter() {
@@ -109,8 +116,6 @@ function getLinter() {
 
     linterResult.error = totalError;
     linterResult.warning = totalWarning;
-
-    console.log(result);
   });
 }
 
@@ -120,11 +125,17 @@ function onLinterUpdated() {
 
 onViteRpcConnected(async () => {
   getLinter();
-  viteRpc.functions.on("linterUpdated", onLinterUpdated);
+  viteRpc.functions.on(
+    DevToolsMessagingEvents.LINTER_INFO_UPDATED,
+    onLinterUpdated,
+  );
 });
 
 onUnmounted(() => {
-  viteRpc.functions.off("linterUpdated", onLinterUpdated);
+  viteRpc.functions.off(
+    DevToolsMessagingEvents.LINTER_INFO_UPDATED,
+    onLinterUpdated,
+  );
 });
 </script>
 

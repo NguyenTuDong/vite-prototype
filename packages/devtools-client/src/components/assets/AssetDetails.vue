@@ -90,7 +90,7 @@ const aspectRatio = computed(() => {
             <td w-30 ws-nowrap pr5 text-right align-baseline op50>Filepath</td>
             <td>
               <div flex="~ gap-1" w-full items-center>
-                <span flex-auto break-all font-mono>
+                <span flex-auto break-all>
                   <CopyText :text="asset.filePath" />
                 </span>
               </div>
@@ -102,7 +102,7 @@ const aspectRatio = computed(() => {
             </td>
             <td>
               <div flex="~ gap-1" w-full items-center>
-                <div flex-auto break-all font-mono>
+                <div flex-auto break-all>
                   <CopyText :text="asset.publicPath" />
                 </div>
               </div>

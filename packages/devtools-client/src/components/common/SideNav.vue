@@ -24,9 +24,9 @@ const navItems: NavItem[] = [
     name: "Overview",
   },
   {
-    to: "/router",
+    to: "/pages",
     icon: "i-ph-tree-view-duotone",
-    name: "Router",
+    name: "Pages",
   },
   {
     to: "/assets",

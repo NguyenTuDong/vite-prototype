@@ -9,10 +9,11 @@ import {
   createViteClientRpc,
   functions,
   initViteClientHotContext,
+  isInIframe,
 } from "@prototype/devtools-core";
 import { createMemoryHistory, createRouter } from "vue-router";
 import Overview from "./pages/Overview.vue";
-import Router from "./pages/Router.vue";
+import Pages from "./pages/Pages.vue";
 import Linter from "./pages/Linter.vue";
 import Settings from "./pages/Settings.vue";
 import Assets from "./pages/Assets.vue";
@@ -20,7 +21,7 @@ import Assets from "./pages/Assets.vue";
 const routes = [
   { path: "/", redirect: "/overview" },
   { path: "/overview", component: Overview },
-  { path: "/router", component: Router },
+  { path: "/pages", component: Pages },
   { path: "/linter", component: Linter },
   { path: "/assets", component: Assets },
   { path: "/settings", component: Settings },
@@ -41,17 +42,12 @@ initViteClientHotContext().then((ctx) => {
   }
 });
 
-// if (isInSeparateWindow) {
-//   createRpcClient(functions, {
-//     preset: 'broadcast',
-//   })
-// }
-// else {
-//   createRpcClient(functions, {
-//     preset: 'iframe',
-//   })
-// }
-
-createRpcClient(functions, {
-  preset: "iframe",
-});
+if (isInIframe) {
+  createRpcClient(functions, {
+    preset: "iframe",
+  });
+} else {
+  createRpcClient(functions, {
+    preset: "broadcast",
+  });
+}

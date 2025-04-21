@@ -4,7 +4,13 @@ import {
   createRpcServer,
   getViteRpcClient,
 } from "../messaging";
-import type { AssetImporter, AssetInfo, ImageMeta, LinterResult } from "../types";
+import type {
+  AssetImporter,
+  AssetInfo,
+  ImageMeta,
+  LinterResult,
+  RouteInfo,
+} from "../types";
 import { createHooks } from "hookable";
 import { setViteClientContext } from "../messaging/presets/vite";
 
@@ -44,6 +50,9 @@ export type ViteRPCFunctions = typeof viteRpcFunctions & {
       results: LinterResult;
     }>
   >;
+
+  // router
+  getRoutes: () => Promise<RouteInfo[]>;
 };
 
 export const viteRpc = new Proxy<{

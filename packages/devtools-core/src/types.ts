@@ -73,3 +73,9 @@ export interface LinterReport {
   warningCount: number;
   results: LinterResult;
 }
+
+export interface RouteInfo {
+  filePath: string;
+  relativePath: string;
+  routePath: string;
+}

@@ -1,39 +1,16 @@
 import { createHooks } from "hookable";
 import { getRpcClient, getRpcServer } from "../messaging";
+import { target } from "../core";
 
 const hooks = createHooks();
 
-// export enum DevToolsMessagingEvents {
-//   INSPECTOR_TREE_UPDATED = "inspector-tree-updated",
-//   INSPECTOR_STATE_UPDATED = "inspector-state-updated",
-//   DEVTOOLS_STATE_UPDATED = "devtools-state-updated",
-//   ROUTER_INFO_UPDATED = "router-info-updated",
-//   TIMELINE_EVENT_UPDATED = "timeline-event-updated",
-//   INSPECTOR_UPDATED = "inspector-updated",
-//   ACTIVE_APP_UNMOUNTED = "active-app-updated",
-//   DESTROY_DEVTOOLS_CLIENT = "destroy-devtools-client",
-//   RELOAD_DEVTOOLS_CLIENT = "reload-devtools-client",
-// }
-
-// function getDevToolsState() {
-//   const state = devtools.ctx.state;
-//   return {
-//     connected: state.connected,
-//     clientConnected: true,
-//     vueVersion: state?.activeAppRecord?.version || "",
-//     tabs: state.tabs,
-//     commands: state.commands,
-//     vitePluginDetected: state.vitePluginDetected,
-//     appRecords: state.appRecords.map((item) => ({
-//       id: item.id,
-//       name: item.name,
-//       version: item.version,
-//       routerId: item.routerId,
-//     })),
-//     activeAppRecordId: state.activeAppRecordId,
-//     timelineLayersState: state.timelineLayersState,
-//   };
-// }
+export enum DevToolsMessagingEvents {
+  TOGGLE_PANEL = "toggle-panel",
+  ROUTER_INFO_UPDATED = "router-info-updated",
+  ASSETS_INFO_UPDATED = "assets-info-updated",
+  LINTER_INFO_UPDATED = "linter-info-updated",
+  ON_NAVIGATE = "on-navigate",
+}
 
 export const functions = {
   on: (event: string, handler: Function) => {
@@ -51,29 +28,33 @@ export const functions = {
   heartbeat: () => {
     return true;
   },
-  // openInEditor(options: OpenInEditorOptions) {
-  //   return devtools.ctx.api.openInEditor(options);
-  // },
-  // toggleClientConnected(state: boolean) {
-  //   toggleClientConnected(state);
-  // },
+
+  // router
+  getCurrentRoute: () => {
+    return target.location.pathname;
+  },
+  navigate: (path: string) => {
+    target.location.href = path;
+  },
 };
 
 export type RPCFunctions = typeof functions;
 
 export const rpc = new Proxy<{
-  value: ReturnType<typeof getRpcClient<RPCFunctions>>;
-  functions: ReturnType<typeof getRpcClient<RPCFunctions>>["$functions"];
+  value: ReturnType<typeof getRpcClient<RPCFunctions, RPCFunctions>>;
+  functions: ReturnType<
+    typeof getRpcClient<RPCFunctions, RPCFunctions>
+  >["$functions"];
 }>(
   {
-    value: {} as ReturnType<typeof getRpcClient<typeof functions>>,
+    value: {} as ReturnType<typeof getRpcClient<RPCFunctions, RPCFunctions>>,
     functions: {} as ReturnType<
-      typeof getRpcClient<RPCFunctions>
+      typeof getRpcClient<RPCFunctions, RPCFunctions>
     >["$functions"],
   },
   {
     get(_, property) {
-      const _rpc = getRpcClient<RPCFunctions>();
+      const _rpc = getRpcClient<RPCFunctions, RPCFunctions>();
       if (property === "value") {
         return _rpc;
       } else if (property === "functions") {

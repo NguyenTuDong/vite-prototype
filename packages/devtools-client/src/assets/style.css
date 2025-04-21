@@ -52,3 +52,36 @@
 .v-popper--theme-tooltip {
   --at-apply: z-max-override;
 }
+
+kbd {
+  --at-apply: font-sans;
+
+  --kbd-color-background: theme('colors.gray.600');
+  --kbd-color-border: theme('colors.gray.800');
+  --kbd-color-text: theme('colors.black');
+
+  @media (prefers-color-scheme: dark) {
+    --kbd-color-background: theme('colors.gray.200');
+    --kbd-color-border: theme('colors.gray.400');
+  }
+
+  background-color: var(--kbd-color-background);
+  color: var(--kbd-color-text);
+  border-radius: 0.25rem;
+  border: 1px solid var(--kbd-color-border);
+  box-shadow: 0 2px 0 1px var(--kbd-color-border);
+  cursor: default;
+  font-size: 0.75em;
+  line-height: 1;
+  min-width: 0.75rem;
+  display: block;
+  text-align: center;
+  padding: 2px 5px;
+  position: relative;
+  top: -1px;
+
+  &:hover {
+    box-shadow: 0 1px 0 0.5px var(--kbd-color-border);
+    top: 1px;
+  }
+}

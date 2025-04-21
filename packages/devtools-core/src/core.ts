@@ -12,6 +12,12 @@ export const target = (
         : {}
 ) as typeof globalThis;
 
+export const isMacOS = () =>
+  navigator?.platform
+    ? navigator?.platform.toLowerCase().includes("mac")
+    : /Macintosh/.test(navigator.userAgent);
+export const isInIframe = isBrowser && target.self !== target.top;
+
 export function setDevToolsClientUrl(url: string) {
   target.__PROTOTYPE_DEVTOOLS_CLIENT_URL__ = url;
 }

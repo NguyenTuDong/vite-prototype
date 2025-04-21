@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { rpc } from "@prototype/devtools-core";
+import { DevToolsMessagingEvents, rpc } from "@prototype/devtools-core";
 import { RouterView, useRoute, useRouter } from "vue-router";
 // import AppConnecting from "./components/AppConnecting.vue";
 import SideNav from "./components/common/SideNav.vue";
@@ -24,18 +24,13 @@ router.afterEach(() => {
 
 useEventListener("keydown", async (e) => {
   if (e.code === "KeyD" && e.altKey && e.shiftKey) {
-    rpc.value.emit("toggle-panel");
+    rpc.value.emit(DevToolsMessagingEvents.TOGGLE_PANEL);
   }
 });
 </script>
 
 <template>
-  <main
-    fixed
-    h-screen
-    w-screen
-    class="glass-effect text-base"
-  >
+  <main fixed h-screen w-screen class="glass-effect text-base">
     <!-- <AppConnecting /> -->
     <div
       class="h-full of-auto transition-base"
@@ -49,7 +44,7 @@ useEventListener("keydown", async (e) => {
       font-sans
     >
       <SideNav />
-        <RouterView />
-      </div>
+      <RouterView />
+    </div>
   </main>
 </template>

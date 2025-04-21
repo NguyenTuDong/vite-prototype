@@ -7,6 +7,7 @@ import {
   AssetImporter,
   AssetInfo,
   AssetType,
+  DevToolsMessagingEvents,
   getViteRpcServer,
   ViteRPCFunctions,
 } from '@prototype/devtools-core'
@@ -119,7 +120,9 @@ export function getAssetsFunctions(ctx: RpcFunctionCtx) {
   }
 
   const debouncedAssetsUpdated = debounce(() => {
-    getViteRpcServer<ViteRPCFunctions>?.()?.broadcast?.emit('assetsUpdated')
+    getViteRpcServer<ViteRPCFunctions>?.()?.broadcast?.emit(
+      DevToolsMessagingEvents.ASSETS_INFO_UPDATED,
+    )
   }, 100)
 
   server.watcher.on('all', (event) => {

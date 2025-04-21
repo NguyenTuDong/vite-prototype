@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  DevToolsMessagingEvents,
   onViteRpcConnected,
   viteRpc,
   type AssetInfo,
@@ -120,11 +121,17 @@ function toggleView() {
 
 onViteRpcConnected(() => {
   fetchAssets();
-  viteRpc.functions.on("assetsUpdated", onAssetsUpdated);
+  viteRpc.functions.on(
+    DevToolsMessagingEvents.ASSETS_INFO_UPDATED,
+    onAssetsUpdated,
+  );
 });
 
 onUnmounted(() => {
-  viteRpc.functions.off("assetsUpdated", onAssetsUpdated);
+  viteRpc.functions.off(
+    DevToolsMessagingEvents.ASSETS_INFO_UPDATED,
+    onAssetsUpdated,
+  );
 });
 </script>
 <template>

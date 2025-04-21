@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  DevToolsMessagingEvents,
   onViteRpcConnected,
   viteRpc,
   type LinterResult,
@@ -29,11 +30,17 @@ function onLinterUpdated() {
 
 onViteRpcConnected(async () => {
   getLinter();
-  viteRpc.functions.on("linterUpdated", onLinterUpdated);
+  viteRpc.functions.on(
+    DevToolsMessagingEvents.LINTER_INFO_UPDATED,
+    onLinterUpdated,
+  );
 });
 
 onUnmounted(() => {
-  viteRpc.functions.off("linterUpdated", onLinterUpdated);
+  viteRpc.functions.off(
+    DevToolsMessagingEvents.LINTER_INFO_UPDATED,
+    onLinterUpdated,
+  );
 });
 </script>
 

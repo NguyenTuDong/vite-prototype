@@ -1,6 +1,7 @@
 import { RpcFunctionCtx } from '../type'
 import { getAssetsFunctions } from './assets'
 import { getLinterFunctions } from './linter'
+import { getRouterFunctions } from './router'
 
 export function getRpcFunctions(ctx: RpcFunctionCtx) {
   return {
@@ -9,5 +10,6 @@ export function getRpcFunctions(ctx: RpcFunctionCtx) {
     },
     ...getAssetsFunctions(ctx),
     ...getLinterFunctions(ctx),
+    ...getRouterFunctions(ctx),
   }
 }

@@ -4,7 +4,9 @@ import prototypeDevToolsOptions from 'virtual:prototype-devtools-options'
 import {
   createRpcServer,
   createViteClientRpc,
+  DevToolsMessagingEvents,
   functions,
+  rpcServer,
   setDevToolsClientUrl,
   setViteClientContext,
 } from '@prototype/devtools-core'
@@ -51,3 +53,5 @@ createRpcServer(functions, {
 createRpcServer(functions, {
   preset: 'broadcast',
 })
+
+rpcServer.value.broadcast.emit(DevToolsMessagingEvents.ON_NAVIGATE)

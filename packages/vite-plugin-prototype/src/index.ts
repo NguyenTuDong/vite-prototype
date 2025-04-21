@@ -27,6 +27,13 @@ const prototype = (userOptions: Partial<CoreOptions> = {}): PluginOption => {
   return [
     {
       name: `vite-plugin-prototype`,
+      config(config) {
+        config.define = config.define || {}
+        config.define['__PROTOTYPE_PAGE_DIR__'] = JSON.stringify(
+          options.pageDir,
+        )
+        return config
+      },
       handleHotUpdate: (ctx) => {
         if (!ctx.file.endsWith(`.json`)) return
 
