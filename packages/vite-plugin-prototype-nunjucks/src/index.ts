@@ -1,4 +1,4 @@
-import { Plugin, UserConfig } from 'vite'
+import { Plugin, ResolvedConfig } from 'vite'
 import nunjucks from 'nunjucks'
 import { templateHook } from 'vite-plugin-prototype'
 
@@ -8,9 +8,9 @@ export interface NunjucksPluginOptions {
   onSetup?: (
     template: nunjucks.Environment,
     path: string,
-    config: UserConfig,
+    config: ResolvedConfig,
   ) => void
-  data: object
+  data: object | ((pagePath: string, config: ResolvedConfig) => object)
 }
 
 const defaultOptions: NunjucksPluginOptions = {
@@ -21,7 +21,7 @@ const defaultOptions: NunjucksPluginOptions = {
 
 const plugin = (userOptions?: Partial<NunjucksPluginOptions>): Plugin[] => {
   const options = Object.assign(defaultOptions, userOptions)
-  let userConfig: UserConfig
+  let userConfig: ResolvedConfig
 
   const { hook, filter } = templateHook({
     extension: 'njk',
@@ -33,8 +33,8 @@ const plugin = (userOptions?: Partial<NunjucksPluginOptions>): Plugin[] => {
       name: `vite-plugin-prototype-nunjucks`,
       ...hook,
 
-      config: (config) => {
-        userConfig = config
+      configResolved(resolvedConfig) {
+        userConfig = resolvedConfig
       },
       transformIndexHtml: {
         order: 'pre',
@@ -55,8 +55,15 @@ const plugin = (userOptions?: Partial<NunjucksPluginOptions>): Plugin[] => {
             options.onSetup(nunjucksEnvironment, ctx.path, userConfig)
           }
 
+          let context = {}
+          if (typeof options.data === 'function') {
+            context = options.data(ctx.path, userConfig)
+          } else {
+            context = options.data
+          }
+
           try {
-            const render = nunjucksEnvironment.renderString(html, options.data)
+            const render = nunjucksEnvironment.renderString(html, context)
             return render
           } catch (error) {
             console.log(error)

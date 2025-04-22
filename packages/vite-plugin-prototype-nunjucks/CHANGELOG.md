@@ -1,5 +1,11 @@
 # vite-plugin-prototype-nunjucks
 
+## 1.0.1
+
+### Patch Changes
+
+- Update data option
+
 ## 1.0.0
 
 ### Major Changes
