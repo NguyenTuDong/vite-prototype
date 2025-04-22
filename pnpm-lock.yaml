@@ -6,39 +6,12 @@ settings:
 
 catalogs:
   default:
-    '@types/fs-extra':
-      specifier: ^11.0.4
-      version: 11.0.4
-    '@vitejs/plugin-vue':
-      specifier: ^5.2.1
-      version: 5.2.1
-    '@vue/tsconfig':
-      specifier: ^0.7.0
-      version: 0.7.0
-    '@vueuse/core':
-      specifier: ^13.0.0
-      version: 13.0.0
-    fs-extra:
-      specifier: ^11.3.0
-      version: 11.3.0
     picocolors:
       specifier: ^1.1.1
       version: 1.1.1
-    sass-embedded:
-      specifier: ^1.85.1
-      version: 1.85.1
-    typescript:
-      specifier: ~5.7.2
-      version: 5.7.3
     vite:
       specifier: ^6.1.0
       version: 6.2.1
-    vue:
-      specifier: ^3.5.13
-      version: 3.5.13
-    vue-tsc:
-      specifier: ^2.2.4
-      version: 2.2.8
 
 importers:
 
@@ -209,9 +182,6 @@ importers:
       '@types/js-beautify':
         specifier: ^1.14.3
         version: 1.14.3
-      '@types/lodash':
-        specifier: ^4.17.15
-        version: 4.17.15
       '@types/node':
         specifier: ^22.13.4
         version: 22.13.4
@@ -221,9 +191,6 @@ importers:
       js-beautify:
         specifier: ^1.15.3
         version: 1.15.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       picocolors:
         specifier: 'catalog:'
         version: 1.1.1
@@ -975,9 +942,6 @@ packages:
 
   '@types/jsonfile@6.1.4':
     resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
-
-  '@types/lodash@4.17.15':
-    resolution: {integrity: sha512-w/P33JFeySuhN6JLkysYUK2gEmy9kHHFN7E8ro0tkfmlDOgxBDzWEZ/J8cWA+fHqFevpswDTFZnDx+R9lbL6xw==}
 
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
@@ -1852,9 +1816,6 @@ packages:
 
   lodash.truncate@4.4.2:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
-
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
@@ -3260,8 +3221,6 @@ snapshots:
     dependencies:
       '@types/node': 22.13.4
 
-  '@types/lodash@4.17.15': {}
-
   '@types/node@12.20.55': {}
 
   '@types/node@22.13.4':
@@ -4213,8 +4172,6 @@ snapshots:
   lodash.startcase@4.4.0: {}
 
   lodash.truncate@4.4.2: {}
-
-  lodash@4.17.21: {}
 
   lru-cache@10.4.3: {}
 

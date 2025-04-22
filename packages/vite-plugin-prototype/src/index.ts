@@ -1,7 +1,7 @@
 import { PluginOption } from 'vite'
 import { pagePlugin } from './pages'
 import { buildPlugin } from './build'
-import { DATA_ID, getData, handleReload, templateHook } from './utils/common'
+import { handleReload, templateHook } from './utils/common'
 import path from 'path'
 
 export interface CoreOptions {
@@ -44,11 +44,6 @@ const prototype = (userOptions: Partial<CoreOptions> = {}): PluginOption => {
         handleReload(ctx)
         return []
       },
-      load(id) {
-        if (id !== DATA_ID) return null
-        const data = getData(options.dataDir)
-        return JSON.stringify(data)
-      },
     },
     buildPlugin({
       pageDir: options.pageDir,
@@ -61,5 +56,5 @@ const prototype = (userOptions: Partial<CoreOptions> = {}): PluginOption => {
   ]
 }
 
-export { DATA_ID, templateHook }
+export { templateHook }
 export default prototype

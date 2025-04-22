@@ -32,11 +32,9 @@
   ],
   "dependencies": {
     "@types/js-beautify": "^1.14.3",
-    "@types/lodash": "^4.17.15",
     "@types/node": "^22.13.4",
     "fast-glob": "^3.3.3",
     "js-beautify": "^1.15.3",
-    "lodash": "^4.17.21",
     "picocolors": "catalog:",
     "vite": "catalog:"
   }

@@ -31,7 +31,6 @@ export async function eslintTool(
       results: parseESLint(results),
     }
   } catch (error) {
-    console.log(error)
     return null
   }
 }

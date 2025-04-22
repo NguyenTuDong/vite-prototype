@@ -37,7 +37,6 @@ export async function stylelintTool(
     })
     return JSON.parse(result.report)
   } catch (error) {
-    console.log(error)
     return null
   }
 }

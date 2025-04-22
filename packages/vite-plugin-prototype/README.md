@@ -48,13 +48,6 @@ Example of the structure:
 
 Directory where your `.html` or template engine page files are located. Requests are auto-redirected to this directory
 
-### dataDir
-
-- **Type:** `string`
-- **Default:** `'./src/data'`
-
-Directory to additional data provided with json file
-
 ### build.crossorigin
 
 - **Type:** `boolean`

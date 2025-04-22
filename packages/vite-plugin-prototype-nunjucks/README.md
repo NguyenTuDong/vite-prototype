@@ -51,6 +51,13 @@ Additional Nunjucks options, see Nunjucks [docs](https://mozilla.github.io/nunju
 
 Whenever to auto-reload browser window upon `njk` file change. You can also provide function to filter upon which file a reload should occur.
 
+### data
+
+- **Type:** `object`
+- **Default:** `{}`
+
+Additional data provide to template
+
 ### onSetup
 
 - **Type:** `(template: nunjucks.Environment, path: string, config: UserConfig) => void`

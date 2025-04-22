@@ -10,18 +10,20 @@ export interface NunjucksPluginOptions {
     path: string,
     config: UserConfig,
   ) => void
+  data: object
 }
 
 const defaultOptions: NunjucksPluginOptions = {
   options: {},
   reload: true,
+  data: {},
 }
 
 const plugin = (userOptions?: Partial<NunjucksPluginOptions>): Plugin[] => {
   const options = Object.assign(defaultOptions, userOptions)
   let userConfig: UserConfig
 
-  const { hook, filter, getData } = templateHook({
+  const { hook, filter } = templateHook({
     extension: 'njk',
     reload: options.reload,
   })
@@ -53,10 +55,8 @@ const plugin = (userOptions?: Partial<NunjucksPluginOptions>): Plugin[] => {
             options.onSetup(nunjucksEnvironment, ctx.path, userConfig)
           }
 
-          let context: object = await getData(ctx)
-
           try {
-            const render = nunjucksEnvironment.renderString(html, context)
+            const render = nunjucksEnvironment.renderString(html, options.data)
             return render
           } catch (error) {
             console.log(error)
