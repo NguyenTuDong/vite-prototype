@@ -1,5 +1,11 @@
 # vite-plugin-prototype-devtools
 
+## 1.0.4
+
+### Patch Changes
+
+- update package.json
+
 ## 1.0.3
 
 ### Patch Changes
