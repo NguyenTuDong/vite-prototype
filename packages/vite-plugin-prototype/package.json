@@ -5,6 +5,10 @@
   "author": "Dong Nguyen",
   "license": "MIT",
   "description": "Small and fast static site generator for Vite",
+  "keywords": [
+    "vite",
+    "vite-plugin"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NguyenTuDong/vite-prototype.git",

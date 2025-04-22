@@ -5,6 +5,11 @@
   "author": "Dong Nguyen",
   "license": "MIT",
   "description": "",
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "nunjucks"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NguyenTuDong/vite-prototype.git",
