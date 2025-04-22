@@ -1,5 +1,11 @@
 # vite-plugin-prototype-devtools
 
+## 1.0.3
+
+### Patch Changes
+
+- change overlay file to javascript
+
 ## 1.0.2
 
 ### Patch Changes

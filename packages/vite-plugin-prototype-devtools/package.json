@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-prototype-devtools",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Dong Nguyen",
   "license": "MIT",
   "description": "",

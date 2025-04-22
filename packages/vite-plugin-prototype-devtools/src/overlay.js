@@ -1,5 +1,3 @@
-/// <reference types="vite/client" />
-//@ts-ignore
 import prototypeDevToolsOptions from 'virtual:prototype-devtools-options'
 import {
     CLIENT_URL,
@@ -12,7 +10,7 @@ import {
   setViteClientContext,
 } from 'prototype-devtools-core'
 
-function normalizeUrl(url: string) {
+function normalizeUrl(url) {
   return new URL(
     `${prototypeDevToolsOptions.base || '/'}${url}`,
     import.meta.url,

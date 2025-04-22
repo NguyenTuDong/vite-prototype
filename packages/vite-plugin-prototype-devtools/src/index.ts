@@ -143,7 +143,7 @@ const plugin = (options?: PluginOptions): Plugin[] => {
               injectTo: 'head-prepend',
               attrs: {
                 type: 'module',
-                src: `${config.base || '/'}@id/virtual:prototype-devtools-path:src/overlay.ts`,
+                src: `${config.base || '/'}@id/virtual:prototype-devtools-path:src/overlay.js`,
               },
             },
           ],
