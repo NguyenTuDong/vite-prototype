@@ -1,37 +1,35 @@
-# Nunjucks
+# EJS
 
-```twig
-<ul id="navigation">
-    {% for item in ['Home', 'About'] %}
-        <li>{{ item }}</li>
-    {% endfor %}
-</ul>
+```html
+<% if (user) { %>
+  <h2><%= user.name %></h2>
+<% } %>
 ```
 
-See [docs](https://mozilla.github.io/nunjucks/) for more info about the syntax
+See [docs](https://ejs.co/) for more info about the syntax
 
 ## Install
 
 **npm**
 
 ```bash
-npm i vite-plugin-prototype-nunjucks -D
+npm i vite-plugin-prototype-ejs -D
 ```
 
 **pnpm**
 
 ```bash
-pnpm i vite-plugin-prototype-nunjucks -D
+pnpm i vite-plugin-prototype-ejs -D
 ```
 
 ## Config
 
 ```javascript
 import prototype from 'vite-plugin-prototype'
-import nunjucks from 'vite-plugin-prototype-nunjucks'
+import nunjucks from 'vite-plugin-prototype-ejs'
 
 export default {
-  plugins: [prototype(), nunjucks()],
+  plugins: [prototype(), ejs()],
 }
 ```
 
@@ -39,17 +37,17 @@ export default {
 
 ### options
 
-- **Type:** `nunjucks.ConfigureOptions`
+- **Type:** `ejs.Options`
 - **Default:** `{}`
 
-Additional Nunjucks options, see Nunjucks [docs](https://mozilla.github.io/nunjucks/api.html#environment) for more info.
+Additional EJS options, see EJS [docs](https://ejs.co/#docs) for more info.
 
 ### reload
 
 - **Type:** `boolean | ((file: string) => boolean)`
 - **Default:** `true`
 
-Whenever to auto-reload browser window upon `njk` file change. You can also provide function to filter upon which file a reload should occur.
+Whenever to auto-reload browser window upon `ejs` file change. You can also provide function to filter upon which file a reload should occur.
 
 ### data
 
@@ -58,9 +56,3 @@ Whenever to auto-reload browser window upon `njk` file change. You can also prov
 
 Additional data provide to template
 
-### onSetup
-
-- **Type:** `(template: nunjucks.Environment, path: string, config: UserConfig) => void`
-- **Default:** `true`
-
-Called after the `nunjucks` environment is created. Use this hook to get to the `nunjucks` API

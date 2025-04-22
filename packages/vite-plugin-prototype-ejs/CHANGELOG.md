@@ -1,5 +1,11 @@
 # vite-plugin-prototype-ejs
 
+## 1.0.0
+
+### Major Changes
+
+- update README.md
+
 ## 0.0.2
 
 ### Patch Changes
