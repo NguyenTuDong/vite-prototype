@@ -10,7 +10,7 @@ import {
   DevToolsMessagingEvents,
   getViteRpcServer,
   ViteRPCFunctions,
-} from '@prototype/devtools-core'
+} from 'prototype-devtools-core'
 import { RpcFunctionCtx } from '../type'
 
 function guessType(path: string): AssetType {

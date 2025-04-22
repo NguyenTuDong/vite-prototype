@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DevToolsMessagingEvents, rpc } from "@prototype/devtools-core";
+import { DevToolsMessagingEvents, rpc } from "prototype-devtools-core";
 import { RouterView, useRoute, useRouter } from "vue-router";
 // import AppConnecting from "./components/AppConnecting.vue";
 import SideNav from "./components/common/SideNav.vue";

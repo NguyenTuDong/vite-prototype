@@ -15,7 +15,7 @@ import {
   rpcServer,
   setIframeServerContext,
   viteRpc,
-} from "@prototype/devtools-core";
+} from "prototype-devtools-core";
 import FrameBox from "./FrameBox.vue";
 
 type ViewMode = "xs" | "default" | "fullscreen";

@@ -7,7 +7,7 @@ import {
   isMacOS,
   rpc,
   isInIframe,
-} from "@prototype/devtools-core";
+} from "prototype-devtools-core";
 import { useRouter } from "vue-router";
 import Button from "../components/common/Button.vue";
 

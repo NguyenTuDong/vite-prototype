@@ -9,7 +9,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "@prototype/devtools-core": [
+      "prototype-devtools-core": [
         "./packages/devtools-core/src/index.ts"
       ]
     },

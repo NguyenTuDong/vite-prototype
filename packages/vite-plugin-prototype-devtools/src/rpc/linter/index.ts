@@ -6,7 +6,7 @@ import {
   LinterReport,
   LinterResult,
   ViteRPCFunctions,
-} from '@prototype/devtools-core'
+} from 'prototype-devtools-core'
 import { stylelintTool } from './stylelint'
 import { LintResult } from 'stylelint'
 import path from 'node:path'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type LinterResult } from "@prototype/devtools-core";
+import { type LinterResult } from "prototype-devtools-core";
 import { openInEditor } from "../../utils";
 
 defineProps<{

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AssetInfo } from "@prototype/devtools-core";
+import type { AssetInfo } from "prototype-devtools-core";
 import { computed } from "vue";
 import AssetPreview from "./AssetPreview.vue";
 

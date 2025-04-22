@@ -35,7 +35,7 @@
     "vite": "catalog:"
   },
   "dependencies": {
-    "@prototype/devtools-core": "workspace:*",
+    "prototype-devtools-core": "workspace:*",
     "@vitejs/plugin-vue": "^5.2.1",
     "eslint": "^9.24.0",
     "fast-glob": "^3.3.3",

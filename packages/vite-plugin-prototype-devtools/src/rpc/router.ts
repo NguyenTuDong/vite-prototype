@@ -6,7 +6,7 @@ import {
   getViteRpcServer,
   RouteInfo,
   ViteRPCFunctions,
-} from '@prototype/devtools-core'
+} from 'prototype-devtools-core'
 import { join, relative, resolve } from 'pathe'
 
 export function getRouterFunctions(ctx: RpcFunctionCtx) {

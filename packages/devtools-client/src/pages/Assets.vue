@@ -4,7 +4,7 @@ import {
   onViteRpcConnected,
   viteRpc,
   type AssetInfo,
-} from "@prototype/devtools-core";
+} from "prototype-devtools-core";
 import { computed, onUnmounted, ref } from "vue";
 import MainLayout from "../components/MainLayout.vue";
 import Button from "../components/common/Button.vue";

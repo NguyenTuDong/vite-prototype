@@ -10,7 +10,7 @@ import {
     CLIENT_URL,
   createViteServerRpc,
   setViteServerContext,
-} from '@prototype/devtools-core'
+} from 'prototype-devtools-core'
 import { getRpcFunctions } from './rpc'
 import { PluginOptions } from './type'
 

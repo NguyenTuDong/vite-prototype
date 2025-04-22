@@ -1,6 +1,6 @@
 import stylelint from 'stylelint'
 import { parseStylelint } from '.'
-import { LinterReport } from '@prototype/devtools-core'
+import { LinterReport } from 'prototype-devtools-core'
 
 export type StyleLintOption = Omit<stylelint.LinterOptions, 'formatter'>
 

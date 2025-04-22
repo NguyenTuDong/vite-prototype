@@ -78,9 +78,6 @@ importers:
 
   packages/devtools-client:
     dependencies:
-      '@prototype/devtools-core':
-        specifier: workspace:*
-        version: link:../devtools-core
       '@unocss/reset':
         specifier: 66.1.0-beta.6
         version: 66.1.0-beta.6
@@ -90,6 +87,9 @@ importers:
       colord:
         specifier: ^2.9.3
         version: 2.9.3
+      prototype-devtools-core:
+        specifier: workspace:*
+        version: link:../devtools-core
       unocss:
         specifier: 66.1.0-beta.6
         version: 66.1.0-beta.6(postcss@8.5.3)(vite@6.2.1(@types/node@22.13.4)(jiti@2.4.2)(sass-embedded@1.85.1))(vue@3.5.13(typescript@5.7.3))
@@ -169,7 +169,7 @@ importers:
 
   packages/devtools-overlay:
     dependencies:
-      '@prototype/devtools-core':
+      prototype-devtools-core:
         specifier: workspace:*
         version: link:../devtools-core
       vue:
@@ -227,9 +227,6 @@ importers:
 
   packages/vite-plugin-prototype-devtools:
     dependencies:
-      '@prototype/devtools-core':
-        specifier: workspace:*
-        version: link:../devtools-core
       '@vitejs/plugin-vue':
         specifier: ^5.2.1
         version: 5.2.1(vite@6.2.1(@types/node@22.13.4)(jiti@2.4.2)(sass-embedded@1.85.1))(vue@3.5.13(typescript@5.7.3))
@@ -257,6 +254,9 @@ importers:
       postcss-scss:
         specifier: ^4.0.9
         version: 4.0.9(postcss@8.5.3)
+      prototype-devtools-core:
+        specifier: workspace:*
+        version: link:../devtools-core
       sirv:
         specifier: ^3.0.1
         version: 3.0.1

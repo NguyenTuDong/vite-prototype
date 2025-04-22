@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { viteRpc, type AssetInfo } from "@prototype/devtools-core";
+import { viteRpc, type AssetInfo } from "prototype-devtools-core";
 import { computedAsync, useTimeAgo, useVModel } from "@vueuse/core";
 import { computed, ref } from "vue";
 import AssetPreview from "./AssetPreview.vue";

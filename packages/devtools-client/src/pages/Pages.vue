@@ -6,7 +6,7 @@ import {
   rpc,
   viteRpc,
   type RouteInfo,
-} from "@prototype/devtools-core";
+} from "prototype-devtools-core";
 import MainLayout from "../components/MainLayout.vue";
 import Button from "../components/common/Button.vue";
 import { onUnmounted, ref } from "vue";

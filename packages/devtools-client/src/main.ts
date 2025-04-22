@@ -10,7 +10,7 @@ import {
   functions,
   initViteClientHotContext,
   isInIframe,
-} from "@prototype/devtools-core";
+} from "prototype-devtools-core";
 import { createMemoryHistory, createRouter } from "vue-router";
 import Overview from "./pages/Overview.vue";
 import Pages from "./pages/Pages.vue";

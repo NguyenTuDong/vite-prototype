@@ -1,4 +1,4 @@
-import { LinterReport } from '@prototype/devtools-core'
+import { LinterReport } from 'prototype-devtools-core'
 import { parseESLint } from '.'
 import { ESLint } from 'eslint'
 

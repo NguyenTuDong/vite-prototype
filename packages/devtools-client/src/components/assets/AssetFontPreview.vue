@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AssetInfo } from "@prototype/devtools-core";
+import type { AssetInfo } from "prototype-devtools-core";
 import { useStyleTag } from "@vueuse/core";
 import { hash } from "ohash";
 import { computed } from "vue";

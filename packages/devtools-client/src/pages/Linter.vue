@@ -4,7 +4,7 @@ import {
   onViteRpcConnected,
   viteRpc,
   type LinterResult,
-} from "@prototype/devtools-core";
+} from "prototype-devtools-core";
 import { onUnmounted, ref } from "vue";
 import MainLayout from "../components/MainLayout.vue";
 import ErrorGroup from "../components/linter/ErrorGroup.vue";

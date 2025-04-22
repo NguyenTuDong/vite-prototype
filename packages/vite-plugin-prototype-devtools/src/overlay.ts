@@ -10,7 +10,7 @@ import {
   rpcServer,
   setDevToolsClientUrl,
   setViteClientContext,
-} from '@prototype/devtools-core'
+} from 'prototype-devtools-core'
 
 function normalizeUrl(url: string) {
   return new URL(

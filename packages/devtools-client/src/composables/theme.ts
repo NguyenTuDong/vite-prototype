@@ -1,4 +1,4 @@
-import { THEME_KEY } from "@prototype/devtools-core";
+import { THEME_KEY } from "prototype-devtools-core";
 import type { UseColorModeOptions } from "@vueuse/core";
 import { useColorMode } from "@vueuse/core";
 import { computed } from "vue";
