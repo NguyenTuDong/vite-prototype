@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-prototype-devtools",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Dong Nguyen",
   "license": "MIT",
   "description": "",
@@ -40,7 +40,6 @@
     "vite": "catalog:"
   },
   "dependencies": {
-    "prototype-devtools-core": "workspace:*",
     "@vitejs/plugin-vue": "^5.2.1",
     "eslint": "^9.24.0",
     "fast-glob": "^3.3.3",
@@ -50,9 +49,9 @@
     "picocolors": "catalog:",
     "postcss": "^8.5.3",
     "postcss-scss": "^4.0.9",
+    "prototype-devtools-core": "workspace:*",
     "sirv": "^3.0.1",
     "stylelint": "^16.16.0",
-    "vite-plugin-prototype": "workspace:*",
     "vue": "catalog:"
   }
 }

@@ -1,4 +1,4 @@
-import { PluginOption } from 'vite'
+import { Plugin } from 'vite'
 import { pagePlugin } from './pages'
 import { buildPlugin } from './build'
 import { handleReload, templateHook } from './utils/common'
@@ -21,7 +21,7 @@ const defaultOptions: CoreOptions = {
   },
 }
 
-const prototype = (userOptions: Partial<CoreOptions> = {}): PluginOption => {
+const prototype = (userOptions: Partial<CoreOptions> = {}): Plugin[] => {
   const options = Object.assign(defaultOptions, userOptions)
 
   return [
