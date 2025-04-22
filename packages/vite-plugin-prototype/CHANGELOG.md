@@ -1,5 +1,11 @@
 # vite-plugin-prototype
 
+## 1.0.0
+
+### Major Changes
+
+- Add devtools
+
 ## 0.0.4
 
 ### Patch Changes
