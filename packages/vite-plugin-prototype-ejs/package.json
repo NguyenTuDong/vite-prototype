@@ -1,0 +1,41 @@
+{
+  "name": "vite-plugin-prototype-ejs",
+  "type": "module",
+  "version": "0.0.0",
+  "author": "Dong Nguyen",
+  "license": "MIT",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NguyenTuDong/vite-prototype.git",
+    "directory": "packages/vite-plugin-prototype-ejs"
+  },
+  "bugs": {
+    "url": "https://github.com/NguyenTuDong/vite-prototype/issues"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "stub": "tsup --watch",
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "vite": "catalog:"
+  },
+  "dependencies": {
+    "@types/ejs": "^3.1.5",
+    "ejs": "^3.1.10",
+    "vite-plugin-prototype": "workspace:*"
+  }
+}
