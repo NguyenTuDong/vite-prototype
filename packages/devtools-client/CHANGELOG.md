@@ -1,5 +1,11 @@
 # prototype-devtools-client
 
+## 1.0.3
+
+### Patch Changes
+
+- Optimize package
+
 ## 1.0.2
 
 ### Patch Changes

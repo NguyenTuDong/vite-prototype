@@ -1,5 +1,11 @@
 # vite-plugin-prototype-devtools
 
+## 1.0.7
+
+### Patch Changes
+
+- Optimize package
+
 ## 1.0.6
 
 ### Patch Changes
