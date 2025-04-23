@@ -60,7 +60,7 @@ Additional data provide to template
 
 ### onSetup
 
-- **Type:** `(template: nunjucks.Environment, path: string, config: UserConfig) => void`
+- **Type:** `(template: nunjucks.Environment, path: string, config: ResolvedConfig) => void`
 - **Default:** `true`
 
 Called after the `nunjucks` environment is created. Use this hook to get to the `nunjucks` API
