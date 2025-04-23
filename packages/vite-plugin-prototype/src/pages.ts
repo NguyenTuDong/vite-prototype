@@ -43,9 +43,11 @@ export const pagePlugin = (options: PageOptions): Plugin => {
 
           const originalFilename = req.originalUrl?.replace('.html', '.*') || ''
 
-          const files = FastGlob.sync(
-            path.join(viteDevServer.config.root, originalFilename),
-          )
+          const pattern =
+            FastGlob.convertPathToPattern(viteDevServer.config.root) +
+            originalFilename
+
+          const files = FastGlob.sync(pattern)
 
           if (files.length) {
             let output = await viteDevServer.transformIndexHtml(

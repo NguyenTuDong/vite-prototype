@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-prototype",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Dong Nguyen",
   "license": "MIT",
   "description": "Small and fast static site generator for Vite",
@@ -39,6 +39,7 @@
     "@types/node": "^22.13.4",
     "fast-glob": "^3.3.3",
     "js-beautify": "^1.15.3",
+    "pathe": "^2.0.3",
     "picocolors": "catalog:",
     "vite": "catalog:"
   }

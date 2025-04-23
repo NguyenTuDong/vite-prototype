@@ -1,5 +1,11 @@
 # vite-plugin-prototype
 
+## 1.0.3
+
+### Patch Changes
+
+- Support Windows
+
 ## 1.0.2
 
 ### Patch Changes

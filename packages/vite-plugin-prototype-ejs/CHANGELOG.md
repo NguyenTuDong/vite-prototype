@@ -1,5 +1,12 @@
 # vite-plugin-prototype-ejs
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - vite-plugin-prototype@1.0.3
+
 ## 1.0.0
 
 ### Major Changes

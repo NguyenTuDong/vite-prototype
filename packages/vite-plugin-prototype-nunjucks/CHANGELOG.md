@@ -1,5 +1,12 @@
 # vite-plugin-prototype-nunjucks
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  - vite-plugin-prototype@1.0.3
+
 ## 1.0.3
 
 ### Patch Changes

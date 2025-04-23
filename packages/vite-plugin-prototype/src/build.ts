@@ -2,7 +2,7 @@ import FastGlob from 'fast-glob'
 import { normalizePath, Plugin, UserConfig } from 'vite'
 import fs from 'fs'
 import js_beautify from 'js-beautify'
-import path from 'path'
+import { relative, resolve } from 'pathe'
 
 var beautify_html = js_beautify.html
 
@@ -31,11 +31,11 @@ export const buildPlugin = ({ pageDir, crossorigin }: BuildOptions): Plugin => {
     },
     resolveId(source, _, options) {
       if (!options.isEntry) return null
-      const relativePath = path.relative(pageDir, source)
+      const relativePath = relative(pageDir, source)
       if (relativePath.startsWith('../')) return null
 
       return {
-        id: path.resolve(
+        id: resolve(
           userConfig.root || process.cwd(),
           relativePath.substring(0, relativePath.indexOf('.')) + '.html',
         ),
@@ -48,16 +48,15 @@ export const buildPlugin = ({ pageDir, crossorigin }: BuildOptions): Plugin => {
     load(id) {
       if (!id.endsWith('.html')) return null
 
-      const files = FastGlob.sync(
-        path.resolve(
+      const pattern = FastGlob.convertPathToPattern(
+        resolve(
           process.cwd(),
           pageDir,
-          path.relative(
-            userConfig.root || process.cwd(),
-            id.replace('.html', '.*'),
-          ),
+          relative(userConfig.root || process.cwd(), id),
         ),
-      )
+      ).replace('.html', '.*')
+
+      const files = FastGlob.sync(pattern)
 
       if (files.length) {
         const content = fs.readFileSync(files[0], 'utf-8')
