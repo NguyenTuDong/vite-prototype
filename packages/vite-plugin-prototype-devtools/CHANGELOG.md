@@ -1,5 +1,11 @@
 # vite-plugin-prototype-devtools
 
+## 1.0.8
+
+### Patch Changes
+
+- Update page title
+
 ## 1.0.7
 
 ### Patch Changes
