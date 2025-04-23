@@ -7,7 +7,7 @@ import sirv from 'sirv'
 import { DIR_CLIENT } from './dir'
 import colors from 'picocolors'
 import {
-    CLIENT_URL,
+  CLIENT_URL,
   createViteServerRpc,
   setViteServerContext,
 } from 'prototype-devtools-core'
@@ -43,8 +43,17 @@ function normalizeComboKeyPrint(toggleComboKey: string) {
 
 const devtoolsNextResourceSymbol = '?__prototype-devtools-next-resource'
 
-const plugin = (options?: PluginOptions): Plugin[] => {
+const plugin = (userOptions?: PluginOptions): Plugin[] => {
   const devtoolsPath = getDevtoolsPath()
+
+  const options = Object.assign<PluginOptions, PluginOptions | undefined>(
+    {
+      launchEditor: process.env.LAUNCH_EDITOR ?? 'code',
+    },
+    userOptions,
+  )
+
+  if (options.launchEditor) process.env.LAUNCH_EDITOR = options.launchEditor
 
   let config: ResolvedConfig
 
